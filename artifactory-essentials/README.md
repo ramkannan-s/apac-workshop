@@ -1,3 +1,11 @@
+- [Artifactory Overview - UI navigation and access](#artifactory-overview---ui-navigation-and-access)
+  - [Prerequisites](#prerequisites)
+  - [Navigating Through the Platform](#navigating-through-the-platform)
+- [Stage 1 - Creating repositories](#stage-1---creating-repositories)
+- [Stage 2 - Working with Artifactory as your docker registry](#stage-2---working-with-artifactory-as-your-docker-registry)
+- [Stage 3 - Leverage CLI to publish build to Artifactory](#stage-3---leverage-cli-to-publish-build-to-artifactory)
+- [Stage 4 - Artifactory AQL](#stage-4---artifactory-aql)
+
 # Artifactory Overview - UI navigation and access
 
 ## Prerequisites

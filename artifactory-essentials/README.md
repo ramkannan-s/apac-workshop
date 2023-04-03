@@ -10,10 +10,11 @@
 
 ### Step1 - Login & Application Overview
 
-- Login to your saas instance <yourinstancename>.jfrog.io with your admin credentials
+- Login to your saas instance `<instance_name>.jfrog.io` with your admin credentials
+
 - Click on 'Artifactory' and get familiar with the Packages, Builds and Artifacts views.
 
-<img src="/artifactory-essentials/images/application.png" alt="Application tab" style="height: 100px; width:100px;"/>
+  <img src="/artifactory-essentials/images/application.png" alt="Application tab" style="height: 100px; width:100px;"/>
 
 ### Step2 - Administration Overview
 
@@ -21,8 +22,9 @@
 
   <img src="/artifactory-essentials/images/admin.png" alt="Admin tab" style="height: 100px; width:100px;"/>
 
-
-
+<br/>
+<hr>
+<br/>
 
 # Stage 1 - Creating repositories
 
@@ -30,80 +32,95 @@
 
 ### Step1 - Local Repository - Docker
 
-- Login to your saas instance <XXXXX>.jfrog.io with  your admin credentials
+- Login to your saas instance `<instance_name>.jfrog.io` with  your admin credentials.
+
 - Navigate to the Administration Module. Expand the Repositories menu and click on the Repositories menu item.
+
   <img src="/artifactory-essentials/images/repository.png" alt="Repositories tab" style="height: 100px; width:100px;"/>
   
 - Add a new Local Repository with the Docker package type.
+
   <img src="/artifactory-essentials/images/choose-docker.png" alt="choose-docker-package tab" style="height: 100px; width:100px;"/>
 
 - Enter the Repository Key “jfrog-docker-dev-local” and keep the rest of the default settings.
+
   <img src="/artifactory-essentials/images/docker-dev-local.png" alt="mame the repo" style="height: 100px; width:100px;"/>
 
-- Once done, Create another local repository with docker package type and name it as "“jfrog-docker-prod-local". Keep the rest of the default settings
+- Once done, Create another local repository with docker package type and name it as "jfrog-docker-prod-local". Keep the rest of the default settings.
+
   <img src="/artifactory-essentials/images/docker-prod-local.png" alt="mame the repo" style="height: 100px; width:100px;"/>
 
 
 ### Step2 - Remote Repository - Docker
 
--  Add a remote repository to cache docker images from docker hub or any other external registries
+-  Add a remote repository to cache docker images from docker hub or any other external registries.
+
    <img src="/artifactory-essentials/images/remote-repo.png" alt="Remote repo" style="height: 100px; width:100px;"/>
    
--  Add a new Remote Repository with the Docker package type and name the repository as "“jfrog-docker-remote" and uncheck "Block pulling of image manifest v2 schema1".
+-  Add a new Remote Repository with the Docker package type and name the repository as "jfrog-docker-remote" and uncheck "Block pulling of image manifest v2 schema1".
+
    <img src="/artifactory-essentials/images/docker-remote.png" alt="mame the repo" style="height: 100px; width:100px;"/>
    <img src="/artifactory-essentials/images/block-pull.png" alt="unblock" style="height: 100px; width:100px;"/>
 
 ### Step3 - Virtual  Repository - Docker
 
--  Add a Virtual repository to work with a single URL from your docker client. Click on the Virtual tab on the Repositories page
+-  Add a Virtual repository to work with a single URL from your docker client. Click on the Virtual tab on the Repositories page.
+
    <img src="/artifactory-essentials/images/virtual-repo.png" alt="Virtual repo" style="height: 100px; width:100px;"/>
    
--   Add a new Virtual Repository with the Docker package type. Enter the Repository Key “jfrog-docker” and add the local and remote docker repositories you created in Steps 2 and 3 (move them from Available Repositories to Selected Repositories using the arrow buttons). The order of these repositories in the list will determine the order used to resolve the dependencies required for building your docker image. Select your local repository(jfrog-docker-dev-local) that you created in Step 2 as the Default Deployment Repository. The Default Deployment Repository is the repository that the docker image you build will be pushed to. Keep the rest of the default settings.
+-   Add a new Virtual Repository with the *Docker Package Type*. Enter the Repository Key “jfrog-docker” and add the local and remote docker repositories you created in Steps 2 and 3 (move them from Available Repositories to Selected Repositories using the arrow buttons). The order of these repositories in the list will determine the order used to resolve the dependencies required for building your docker image. Select your local repository(jfrog-docker-dev-local) that you created in Step 2 as the Default Deployment Repository. The Default Deployment Repository is the repository that the docker image you build will be pushed to. Keep the rest of the default settings.
+
    <img src="/artifactory-essentials/images/docker-virtual.png" alt="mame the repo" style="height: 100px; width:100px;"/>
     
-- After the docker virtual registry is created. It will provide you with the details on how to access this docker registry. Copy that information and keep it in locally on your laptop
+- After the docker virtual registry is created. It will provide you with the details on how to access this docker registry. Copy that information and keep it in locally on your laptop.
+
   <img src="/artifactory-essentials/images/docker-command-display.png" alt="docker commands" style="height: 100px; width:100px;"/>
 
 ### Awesome !!! You have successfully completed Stage 2.
 
-
-
+<br/>
+<hr>
+<br/>
 
 # Stage 2 - Working with Artifactory as your docker registry
 
 ## Step 1 - Update the dockerfile  
 
-- Update the dockerfile present under lab4 section.Update the FROM line of the Dockerfile to reference your virtual Docker repository.
+- Update the dockerfile present in this repository. Update the FROM line of the Dockerfile to reference your virtual Docker repository.
     - ```FROM ${SERVER_NAME}.jfrog.io/${VIRTUAL_REPO_NAME}/alpine:3.11.5```
       
-    - The SERVER_NAME is the first part of the URL given to you for your environment: ```https://<SERVER_NAME>.jfrog.io.``` You can also get this information from the docker login command from Lab2
+    - The SERVER_NAME is the first part of the URL given to you for your environment: ```https://<SERVER_NAME>.jfrog.io.``` You can also get this information from the docker login command.
+
       <img src="/artifactory-essentials/images/docker-command.png" alt="docker commands" style="height: 100px; width:100px;"/>
 
-    - The VIRTUAL_REPO_NAME is the name ““jfrog-docker” that you assigned to your virtual repository in Step 3 on Lab2.
-    - After modifying your dockerfile should be something like below
+    - The VIRTUAL_REPO_NAME is the name ““jfrog-docker” that you assigned to your virtual repository in Stage 2.
+
+    - After modifying your dockerfile should be something like below.
+
       <img src="/artifactory-essentials/images/modified-dockerfiles.png" alt="dockerfile" style="height: 100px; width:100px;"/>
     
 ## Step 2 - Push custom image to your docker repository
 
-- Login to your docker virtual repository. Replace the  SERVER_NAME and VIRTUAL_REPO_NAME as mentioned in Step2
+- Login to your docker virtual repository. Replace the  SERVER_NAME and VIRTUAL_REPO_NAME as mentioned in above step.
     - ``` $docker login ${SERVER_NAME}.jfrog.io```
       
       <img src="/artifactory-essentials/images/login-docker.png" alt="docker login" style="height: 100px; width:100px;"/>
       
-- Build your docker image. Replace the  SERVER_NAME and VIRTUAL_REPO_NAME as mentioned in Step2
+- Build your docker image. Replace the  SERVER_NAME and VIRTUAL_REPO_NAME as mentioned in above step.
     - ```$ docker build --tag ${SERVER_NAME}.jfrog.io/${VIRTUAL_REPO_NAME}/my-docker-image:latest . ```
       
       <img src="/artifactory-essentials/images/docker-builds.png" alt="docker build" style="height: 100px; width:100px;"/>
       
-- Push the build docker image to your docker registry. Replace the  SERVER_NAME and VIRTUAL_REPO_NAME as mentioned in Step2
+- Push the build docker image to your docker registry. Replace the  SERVER_NAME and VIRTUAL_REPO_NAME as mentioned in above step. 
     - ``` $ docker push ${SERVER_NAME}.jfrog.io/${VIRTUAL_REPO_NAME}/my-docker-image:latest ```
       
       <img src="/artifactory-essentials/images/dockerpush.png" alt="docker push" style="height: 100px; width:100px;"/>
 
 ### Awesome !!! You have successfully completed Stage 3. Next lab we will help you to search and view the artifacts.
 
-
-
+<br/>
+<hr>
+<br/>
 
 # Stage 3 - Leverage CLI to publish build to Artifactory
 
@@ -111,7 +128,8 @@
   
 - Execute the ./build.sh script. 
 
-- You will be prompted to enter some important details. We will discuss each one of these during the class and while implementing this lab 
+- You will be prompted to enter some important details. We will discuss each one of these during the class and while implementing the same. 
+
 * Detail about each input
   * Configuration name for CLI : The name used to reference your instance using Jfrog CLI on your local machine. e.g - "JPD" is the name which I am giving to access my Jfrog platform
     <img src="/artifactory-essentials/images/CLI-Config-name.png" alt="CLI Config" style="height: 100px; width:100px;"/>
@@ -141,7 +159,6 @@
 
 - Navigate to the Application Module, expand the Artifactory menu and click the Build menu item. The published build is displayed here
   <img src="/artifactory-essentials/images/build.png" alt="Build" style="height: 100px; width:100px;"/>
-  
   
 - Click the BuildName and the build number to view the published modules
   
@@ -176,8 +193,11 @@
   <img src="/artifactory-essentials/images/build-promotion.png" alt="Build Number" style="height: 100px; width:100px;"/>
 
 
-### Awesome !!! You have successfully completed Stage 4. You can use CLI to push the build information from any CI build agent.
+### Awesome !!! You have successfully completed Stage 3. You can use CLI to push the build information from any CI build agent.
 
+<br/>
+<hr>
+<br/>
 
 # Stage 4 - Artifactory AQL
 
@@ -202,18 +222,16 @@ $ curl -XPOST -u <username>:**** -H 'Content-Type:text/plain' https://<instance_
 $ curl -XPOST -u <username>:**** -H 'Content-Type:text/plain' https://<instance_name>.jfrog.io/artifactory/api/search/aql --data 'items.find({"@artifactory.licenses":"*"})'
 ```
 
-Create a file - test.aql 
+Create a file - data-no-downloads.aql 
 ```
 items.find({ "repo": "example-repo-local",
     "created": {"$last" : "10d"},
     "stat.downloads": {"$eq" : null}
- })
-
-.include("name","path","repo")
+ }).include("name","path","repo")
 
 ```
 
-```jf rt curl -XPOST api/search/aql -T test.aql```
+```jf rt curl -XPOST api/search/aql -T data-no-downloads.aql```
 
 Create a file - dockerage.sql
 ```

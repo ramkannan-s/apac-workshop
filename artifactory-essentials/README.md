@@ -1,4 +1,4 @@
-# Stage 1 - Artifactory Overview - UI navigation and access
+# Artifactory Overview - UI navigation and access
 
 ## Prerequisites
 
@@ -24,7 +24,7 @@
 
 
 
-# Stage 2 - Creating repositories
+# Stage 1 - Creating repositories
 
 ## Creating Repositories
 
@@ -37,10 +37,10 @@
 - Add a new Local Repository with the Docker package type.
   <img src="/artifactory-essentials/images/choose-docker.png" alt="choose-docker-package tab" style="height: 100px; width:100px;"/>
 
-- Enter the Repository Key “swampup-docker-dev-local” and keep the rest of the default settings.
+- Enter the Repository Key “jfrog-docker-dev-local” and keep the rest of the default settings.
   <img src="/artifactory-essentials/images/docker-dev-local.png" alt="mame the repo" style="height: 100px; width:100px;"/>
 
-- Once done, Create another local repository with docker package type and name it as "swampup-docker-prod-local". Keep the rest of the default settings
+- Once done, Create another local repository with docker package type and name it as "“jfrog-docker-prod-local". Keep the rest of the default settings
   <img src="/artifactory-essentials/images/docker-prod-local.png" alt="mame the repo" style="height: 100px; width:100px;"/>
 
 
@@ -49,7 +49,7 @@
 -  Add a remote repository to cache docker images from docker hub or any other external registries
    <img src="/artifactory-essentials/images/remote-repo.png" alt="Remote repo" style="height: 100px; width:100px;"/>
    
--  Add a new Remote Repository with the Docker package type and name the repository as "swampup-docker-remote" and uncheck "Block pulling of image manifest v2 schema1".
+-  Add a new Remote Repository with the Docker package type and name the repository as "“jfrog-docker-remote" and uncheck "Block pulling of image manifest v2 schema1".
    <img src="/artifactory-essentials/images/docker-remote.png" alt="mame the repo" style="height: 100px; width:100px;"/>
    <img src="/artifactory-essentials/images/block-pull.png" alt="unblock" style="height: 100px; width:100px;"/>
 
@@ -58,7 +58,7 @@
 -  Add a Virtual repository to work with a single URL from your docker client. Click on the Virtual tab on the Repositories page
    <img src="/artifactory-essentials/images/virtual-repo.png" alt="Virtual repo" style="height: 100px; width:100px;"/>
    
--   Add a new Virtual Repository with the Docker package type. Enter the Repository Key “swampup-docker” and add the local and remote docker repositories you created in Steps 2 and 3 (move them from Available Repositories to Selected Repositories using the arrow buttons). The order of these repositories in the list will determine the order used to resolve the dependencies required for building your docker image. Select your local repository(swampup-docker-dev-local) that you created in Step 2 as the Default Deployment Repository. The Default Deployment Repository is the repository that the docker image you build will be pushed to. Keep the rest of the default settings.
+-   Add a new Virtual Repository with the Docker package type. Enter the Repository Key “jfrog-docker” and add the local and remote docker repositories you created in Steps 2 and 3 (move them from Available Repositories to Selected Repositories using the arrow buttons). The order of these repositories in the list will determine the order used to resolve the dependencies required for building your docker image. Select your local repository(jfrog-docker-dev-local) that you created in Step 2 as the Default Deployment Repository. The Default Deployment Repository is the repository that the docker image you build will be pushed to. Keep the rest of the default settings.
    <img src="/artifactory-essentials/images/docker-virtual.png" alt="mame the repo" style="height: 100px; width:100px;"/>
     
 - After the docker virtual registry is created. It will provide you with the details on how to access this docker registry. Copy that information and keep it in locally on your laptop
@@ -69,7 +69,7 @@
 
 
 
-# Stage 3 - Working with Artifactory as your docker registry
+# Stage 2 - Working with Artifactory as your docker registry
 
 ## Step 1 - Update the dockerfile  
 
@@ -79,7 +79,7 @@
     - The SERVER_NAME is the first part of the URL given to you for your environment: ```https://<SERVER_NAME>.jfrog.io.``` You can also get this information from the docker login command from Lab2
       <img src="/artifactory-essentials/images/docker-command.png" alt="docker commands" style="height: 100px; width:100px;"/>
 
-    - The VIRTUAL_REPO_NAME is the name “swampup-docker” that you assigned to your virtual repository in Step 3 on Lab2.
+    - The VIRTUAL_REPO_NAME is the name ““jfrog-docker” that you assigned to your virtual repository in Step 3 on Lab2.
     - After modifying your dockerfile should be something like below
       <img src="/artifactory-essentials/images/modified-dockerfiles.png" alt="dockerfile" style="height: 100px; width:100px;"/>
     
@@ -105,7 +105,7 @@
 
 
 
-# Stage 4 - Leverage CLI to publish build to Artifactory
+# Stage 3 - Leverage CLI to publish build to Artifactory
 
 ## Step 1 - Run the build.sh script
   
@@ -124,7 +124,7 @@
   
   * Jfrog instance password : password for accessing your jfrog platform instance
   
-  * Docker Virtual Repository name : Please provide this as "swampup-docker". This is the name of the virtual repository which you created in Step3 of Lab2
+  * Docker Virtual Repository name : Please provide this as "jfrog-docker". This is the name of the virtual repository which you created in Step3 of Lab2
   
   * Build name : Provide a name to your build. This Build name will be displayed under the Builds tab in Jfrog platform. 
      <img src="/artifactory-essentials/images/buildname.png" alt="buildname" style="height: 100px; width:100px;"/>
@@ -132,7 +132,7 @@
   * Build number : Provide a number to your build. This Buildnumber is usually your CI build run number.
     <img src="/artifactory-essentials/images/buildnumber.png" alt="Build Number" style="height: 100px; width:100px;"/>
     
-- Once the above information is entered, the script dynamically modifies the Dockerfile to point to your SERVER_NAME and  VIRTUAL_REPO_NAME to point to your docker virtual repository ("swampup-docker")
+- Once the above information is entered, the script dynamically modifies the Dockerfile to point to your SERVER_NAME and  VIRTUAL_REPO_NAME to point to your docker virtual repository ("jfrog-docker")
 
 - Finally, You should see that CLI builds the docker image and pushes to artifactory
   <img src="/artifactory-essentials/images/buildsuccess.png" alt="Build success" style="height: 100px; width:100px;"/>
@@ -157,7 +157,7 @@
 
 - You can add properties to the docker image published. Below is a sample on how to add properties to the published docker image as part of the build
 
-    ```$jfrog rt sp  --include-dirs=true "swampup-docker-dev-local/docker-example-build-image/1*" "unittest=passed"```
+    ```$jf rt sp  --include-dirs=true "jfrog-docker-dev-local/docker-example-build-image/1*" "unittest=passed"```
 
   <img src="/artifactory-essentials/images/properties-update.png" alt="properties" style="height: 100px; width:100px;"/>
 
@@ -168,18 +168,18 @@
 
 ## Step 4-  Promote the Build 
 
-- Promote the build and its associated build information to production. Below we are promoting our "sample-docker-cli-build" to "swampup-docker-prod-local" repository
+- Promote the build and its associated build information to production. Below we are promoting our "sample-docker-cli-build" to "jfrog-docker-prod-local" repository
 
-    ```$ jfrog rt build-promote sample-docker-cli-build 1 swampup-docker-prod-local```
+    ```$ jf rt build-promote sample-docker-cli-build 1 jfrog-docker-prod-local```
   
-- View the published module to validate the binary is now in swampup-docker-prod-local
+- View the published module to validate the binary is now in jfrog-docker-prod-local
   <img src="/artifactory-essentials/images/build-promotion.png" alt="Build Number" style="height: 100px; width:100px;"/>
 
 
 ### Awesome !!! You have successfully completed Stage 4. You can use CLI to push the build information from any CI build agent.
 
 
-# Stage 5 - Artifactory AQL
+# Stage 4 - Artifactory AQL
 
 - AQL Link - https://www.jfrog.com/confluence/display/JFROG/Artifactory+Query+Language
 
@@ -225,3 +225,5 @@ items.find({
 ```
 
 ```jf rt curl -X POST api/search/aql -T dockerage.sql```
+
+### Awesome !!! You have successfully completed Stage 4.

@@ -1,10 +1,26 @@
 - [Artifactory Overview - UI navigation and access](#artifactory-overview---ui-navigation-and-access)
   - [Prerequisites](#prerequisites)
   - [Navigating Through the Platform](#navigating-through-the-platform)
+    - [Step1 - Login \& Application Overview](#step1---login--application-overview)
+    - [Step2 - Administration Overview](#step2---administration-overview)
 - [Stage 1 - Creating repositories](#stage-1---creating-repositories)
+  - [Creating Repositories](#creating-repositories)
+    - [Step1 - Local Repository - Docker](#step1---local-repository---docker)
+    - [Step2 - Remote Repository - Docker](#step2---remote-repository---docker)
+    - [Step3 - Virtual  Repository - Docker](#step3---virtual--repository---docker)
+    - [Awesome !!! You have successfully completed Stage 2.](#awesome--you-have-successfully-completed-stage-2)
 - [Stage 2 - Working with Artifactory as your docker registry](#stage-2---working-with-artifactory-as-your-docker-registry)
+  - [Step 1 - Update the dockerfile](#step-1---update-the-dockerfile)
+  - [Step 2 - Push custom image to your docker repository](#step-2---push-custom-image-to-your-docker-repository)
+    - [Awesome !!! You have successfully completed Stage 3. Next lab we will help you to search and view the artifacts.](#awesome--you-have-successfully-completed-stage-3-next-lab-we-will-help-you-to-search-and-view-the-artifacts)
 - [Stage 3 - Leverage CLI to publish build to Artifactory](#stage-3---leverage-cli-to-publish-build-to-artifactory)
+  - [Step 1 - Run the build.sh script](#step-1---run-the-buildsh-script)
+  - [Step 2 - View the Build information in Artifactory](#step-2---view-the-build-information-in-artifactory)
+  - [Step 3- Adding properties/metadata to the published build](#step-3--adding-propertiesmetadata-to-the-published-build)
+  - [Step 4-  Promote the Build](#step-4---promote-the-build)
+    - [Awesome !!! You have successfully completed Stage 3. You can use CLI to push the build information from any CI build agent.](#awesome--you-have-successfully-completed-stage-3-you-can-use-cli-to-push-the-build-information-from-any-ci-build-agent)
 - [Stage 4 - Artifactory AQL](#stage-4---artifactory-aql)
+    - [Awesome !!! You have successfully completed Stage 4.](#awesome--you-have-successfully-completed-stage-4)
 
 # Artifactory Overview - UI navigation and access
 
@@ -215,19 +231,19 @@
 
 - Commands :
 ```
-$ curl -XPOST -u <username>:**** -H 'Content-Type:text/plain' https://<instance_name>.jfrog.io/artifactory/api/search/aql --data 'items.find({"repo":{"$eq":"example-repo-local"}})'
+$ jf rt curl "/api/search/aql" -H 'Content-Type:text/plain' --data 'items.find({"repo":{"$eq":"example-repo-local"}})'
 
-$ curl -XPOST -u <username>:**** -H 'Content-Type:text/plain' https://<instance_name>.jfrog.io/artifactory/api/search/aql --data 'items.find({"name": {"$match" : "*test*"}})'
+$ jf rt curl "/api/search/aql" -H 'Content-Type:text/plain' --data 'items.find({"name": {"$match" : "*test*"}})'
 
-$ curl -XPOST -u <username>:**** -H 'Content-Type:text/plain' https://<instance_name>.jfrog.io/artifactory/api/search/aql --data 'items.find({"name" : {"$match":"*.jar"}}).include("name").distinct(false)'
+$ jf rt curl "/api/search/aql" -H 'Content-Type:text/plain' --data 'items.find({"name" : {"$match":"*.jar"}}).include("name").distinct(false)'
 
-$ curl -XPOST -u <username>:**** -H 'Content-Type:text/plain' https://<instance_name>.jfrog.io/artifactory/api/search/aql --data 'items.find({"repo": "example-repo-local"})'
+$ jf rt curl "/api/search/aql" -H 'Content-Type:text/plain' --data 'items.find({"repo": "example-repo-local"})'
 
-$ curl -XPOST -u <username>:**** -H 'Content-Type:text/plain' https://<instance_name>.jfrog.io/artifactory/api/search/aql --data 'items.find({"modified" : {"$last" : "2w"}})'  (use before as well)
+$ jf rt curl "/api/search/aql" -H 'Content-Type:text/plain' --data 'items.find({"modified" : {"$last" : "2w"}})'  (use before as well)
 
-$ curl -XPOST -u <username>:**** -H 'Content-Type:text/plain' https://<instance_name>.jfrog.io/artifactory/api/search/aql --data 'items.find({"repo": "example-repo-local", "created" : {"$last" : "5d"}, "size" : {"$gt" : "500"}, "type" : "file"})'
+$ jf rt curl "/api/search/aql" -H 'Content-Type:text/plain' --data 'items.find({"repo": "example-repo-local", "created" : {"$last" : "5d"}, "size" : {"$gt" : "500"}, "type" : "file"})'
 
-$ curl -XPOST -u <username>:**** -H 'Content-Type:text/plain' https://<instance_name>.jfrog.io/artifactory/api/search/aql --data 'items.find({"@artifactory.licenses":"*"})'
+$ jf rt curl "/api/search/aql" -H 'Content-Type:text/plain' --data 'items.find({"@artifactory.licenses":"*"})'
 ```
 
 Create a file - data-no-downloads.aql 

@@ -1,0 +1,10 @@
+{
+    "key" : "cpe-packagename-local-apac",
+    "packageType" : "packagename",
+    "description" : "packagename repository",
+    "includesPattern" : "**/*",
+    "excludesPattern" : "",
+    "repoLayoutRef" : "simple-default",
+    "rclass" : "local"
+  }
+  

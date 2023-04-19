@@ -1,0 +1,5 @@
+npm
+nuget
+maven
+gems
+docker

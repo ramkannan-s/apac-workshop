@@ -1,9 +1,0 @@
-{
-  "key": "cpe-docker-local-apac",
-  "packageType": "docker",
-  "description": "docker repository created.. ",
-  "includesPattern": "**/*",
-  "excludesPattern": "",
-  "repoLayoutRef": "simple-default",
-  "rclass": "local"
-}

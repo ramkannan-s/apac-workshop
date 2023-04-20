@@ -21,8 +21,9 @@ SERVER_ID="${1:?please enter Server ID. ex - ramkannan}"
 ### define variables
 groupsname="apac-workshop-admin"
 groupdesc="Admin Privileges for users"
+userprefix="apac"
 SERVER_ID="${1:?please enter Server ID. ex - ramkannan}"
-option="${2:?please provide option eg: createadmingroup | addusers | deletegroup}"
+option="${2:?please provide option eg: admingroup | addusers | deletegroup}"
 projectCount=30
 item=1
 
@@ -36,8 +37,8 @@ fi
 if [ "$option" == "addusers" ]; then
     while [ $item -le $projectCount ]
     do
-        echo "Add user - apac-trail-user-$item to group"
-        jf rt group-add-users $groupsname "apac-trail-user-$item" --server-id=$SERVER_ID
+        echo "Add user - $userprefix-trail-user-$item to group"
+        jf rt group-add-users $groupsname "$userprefix-trail-user-$item" --server-id=$SERVER_ID
         ((item++))
     done
 fi

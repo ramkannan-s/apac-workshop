@@ -22,6 +22,7 @@ projectCount=30
 item=1
 projectnameprefix="apac-workshop"
 projectidprefix="aw"
+userprefix="apac"
 
 rm -rf project-*.json
 rm -rf users-*.json
@@ -34,7 +35,7 @@ do
     curl -XPOST -H "Authorization: Bearer ${JPD_AUTH_TOKEN}" "$SOURCE_JPD_URL/access/api/v1/projects" -d @project-"$item".json -s -H 'Content-Type: application/json'
     echo -e ""
     echo -e "Adding user apac-trail-user-$item to $projectnameprefix-$item"
-    user_template_cmd="cat projectUserAdd.json | jq '.name = \"apac-trail-user-$item\"' > user-$item.json"
+    user_template_cmd="cat projectUserAdd.json | jq '.name = \"$userprefix-trail-user-$item\"' > user-$item.json"
     eval "$user_template_cmd"
     curl -XPUT -H "Authorization: Bearer ${JPD_AUTH_TOKEN}" "$SOURCE_JPD_URL/access/api/v1/projects/$projectidprefix$item/users/apac-trail-user-$item" -d @user-$item.json -s -H 'Content-Type: application/json'
     ((item++))

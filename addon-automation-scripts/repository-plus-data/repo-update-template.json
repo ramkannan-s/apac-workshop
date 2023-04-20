@@ -1,9 +1,0 @@
-{
-  "key": "cpe-generic-local-apac",
-  "packageType": "generic",
-  "description": "generic repository created.. ",
-  "includesPattern": "**/*",
-  "excludesPattern": "",
-  "repoLayoutRef": "simple-default",
-  "rclass": "local"
-}

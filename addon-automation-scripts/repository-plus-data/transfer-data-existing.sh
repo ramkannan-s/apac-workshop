@@ -3,7 +3,7 @@
 ### Get Arguments
 repo_name_template="cpe"
 source_server_name="proservices"
-target_server_name="jfrog_apac"
+target_server_name="jf_lab_server"
 
 while IFS= read -r packagetype; do
     reponame="$repo_name_template-$packagetype-local-apac"
@@ -18,3 +18,5 @@ while IFS= read -r packagetype; do
     rm -rf $reponame
     echo -e "Completed $reponame ..."
 done < "repos-to-create.txt"
+
+### sample cmd to run - ./transfer-data-existing.sh

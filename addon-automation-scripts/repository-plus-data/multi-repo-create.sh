@@ -4,6 +4,8 @@
 repo_name_template="cpe"
 desc="repository created.. "
 
+jf c use jfrog_apac
+
 while IFS= read -r packagetype; do
     repo_key="$repo_name_template-$packagetype-local-apac"
     description="$packagetype $desc"

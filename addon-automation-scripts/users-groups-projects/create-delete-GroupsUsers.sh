@@ -48,4 +48,4 @@ if [ "$option" == "deletegroup" ]; then
 fi
 
 
-### sample cmd to run - ./createGroupsUsers.sh ramkannan option
+### sample cmd to run - ./create-delete-GroupsUsers.sh ramkannan option

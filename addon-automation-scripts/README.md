@@ -8,6 +8,7 @@ A set of SaaS Environment as per requirement will be created and shared.
 ## Prerequisites
 
 - Login to SaaS with default credentials and create a user as `svc_jfrog_user` and with any random password. 
+- Install [jq](https://stedolan.github.io/jq/download/) in the VM / Box where the scripts are going to be triggered.
 - Install the [JFrog CLI](https://jfrog.com/getcli/) in the VM / Box where the scripts are going to be triggered. 
 - Add the following server :- 
   - Server used by participants - eg: `jf_lab_server`

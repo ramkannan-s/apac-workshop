@@ -4,6 +4,7 @@
 #echo $1;
 echo $1;
 rm -rf workshop-users-list-new.csv
+echo "\"username\",\"password\",\"email\"" >> workshop-users-list-new.csv;
 for i in `seq 1 $1`;
 do
 	tempPass=$(openssl rand -base64 10);

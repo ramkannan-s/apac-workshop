@@ -22,13 +22,13 @@ A set of SaaS Environment as per requirement will be created and shared.
 ## Prerequisites
 
 - Login to SaaS with default credentials and create a user as `svc_jfrog_user` and with any random password. 
+- Install the [JFrog CLI](https://jfrog.com/getcli/) in the VM / Box where the scripts are going to be triggered.
 - Install [jq](https://stedolan.github.io/jq/download/) in the VM / Box where the scripts are going to be triggered.
 - Install [openssl](https://www.misterpki.com/how-to-install-openssl-on-ubuntu/) in Ubuntu or [openssl](https://www.openssl.org/source/) in Windows or use `brew install openssl` for Mac. 
-- Install the [JFrog CLI](https://jfrog.com/getcli/) in the VM / Box where the scripts are going to be triggered. 
 - Add the following server :- 
   - Server used by participants - eg: `jf_lab_server`
 ``` 
-jf c add jf_lab_server --url "https://<server_id>.jfrog.io/" --user="svc_jfrog_user" --access-token="****"
+jf c add jf_lab_server --url "https://<server_id>.jfrog.io/" --user="svc_jfrog_user" --access-token="****" --interactive false
 
 jf c use jf_lab_server
 ```
@@ -91,7 +91,7 @@ eg: `project-1` takes `user-1` as Project Admin
 
 * Trigger the script :-
 ```bash
-./multi-repo-create.sh
+./multi-repo-create.sh jf_lab_server
 ```
 
 * The above script will create repositories based on the package types given in `repos-to-create.txt` file and the naming convention for the repositories will be `<repo_name_prefix>-<package_type_name>-local-<repo_name_suffix>`.
@@ -121,7 +121,7 @@ eg: `project-1` takes `user-1` as Project Admin
 
 * Prerequisite :- Add the `proservices` server :- (Source server to download data)
 ``` 
-jf c add proservices --url "https://proservices.jfrog.io/" --user="svc_jfrog_user"
+jf c add proservices --url "https://proservices.jfrog.io/" --user="svc_jfrog_user" --access-token="***" --interactive false
 ```
 The access token will be shared at the time of lab setup
 
@@ -134,7 +134,7 @@ The access token will be shared at the time of lab setup
 
 * Trigger the script :-
 ```bash
-./transfer-data-existing.sh
+./transfer-data-existing.sh jf_lab_server
 ```
 
 * The above script will download the data from `proservices` artifactory and upload the data to `jf_lab_server` artifactory.

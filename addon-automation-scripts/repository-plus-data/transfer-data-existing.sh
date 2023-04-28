@@ -3,7 +3,7 @@
 ### Get Arguments
 repo_name_template="cpe"
 source_server_name="proservices"
-target_server_name="jf_lab_server"
+target_server_name="${1:?please enter Server ID. ex - jf_lab_server}"
 
 while IFS= read -r packagetype; do
     reponame="$repo_name_template-$packagetype-local-apac"
@@ -19,4 +19,4 @@ while IFS= read -r packagetype; do
     echo -e "Completed $reponame ..."
 done < "repos-to-create.txt"
 
-### sample cmd to run - ./transfer-data-existing.sh
+### sample cmd to run - ./transfer-data-existing.sh jf_lab_server

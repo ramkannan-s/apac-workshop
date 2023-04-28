@@ -18,7 +18,7 @@ set -u
 ### Get Arguments
 SOURCE_JPD_URL="${1:?please enter JPD URL. ex - https://ramkannan.jfrog.io}"
 JPD_AUTH_TOKEN="${2:?please provide identity token}"
-projectCount=30
+projectCount="${3:?please enter the project count}"
 item=1
 projectnameprefix="apac-workshop"
 projectidprefix="aw"
@@ -41,4 +41,4 @@ do
     ((item++))
 done
 
-### sample cmd to run - ./createProjectsUsers.sh https://ramkannan.jfrog.io ****
+### sample cmd to run - ./createProjectsUsers.sh https://ramkannan.jfrog.io **** 30

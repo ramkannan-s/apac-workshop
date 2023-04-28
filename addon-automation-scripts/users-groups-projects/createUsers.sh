@@ -17,9 +17,18 @@ set -u
 
 ### Get Arguments
 SERVER_ID="${1:?please enter Server ID. ex - ramkannan}"
+userCount="${2:?enter number of users to be created. ex - ramkannan}"
+csvname="create-users-list.csv"
 
-### define variables
-csvname="workshop-users-list.csv"
+rm -rf "$csvname"
+echo "No of Users that will be created = $userCount";
+echo "\"username\",\"password\",\"email\"" >> $csvname;
+for i in `seq 1 $userCount`;
+do
+	tempPass=$(openssl rand -base64 8);
+	echo "\"apac-trail-user-"$i"\",\"$tempPass\",\"apacuser@testjfrog.com\"" >> $csvname;
+done;
+echo "" >> $csvname
 
 ### Run the curl API 
 echo "updating readers groups.. "
@@ -37,4 +46,4 @@ fi
 echo "creating users"
 jf rt users-create --csv $csvname --server-id $SERVER_ID --replace
 
-### sample cmd to run - ./createUsers.sh ramkannan
+### sample cmd to run - ./createUsers.sh ramkannan 30

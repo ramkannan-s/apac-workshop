@@ -2,9 +2,9 @@
 
 ### Get Arguments
 SERVER_ID="${1:?please enter Server ID. ex - jf_lab_server}"
-repo_name_prefix="cpe"
-repo_name_suffix="apac"
-desc="repository created.. "
+repo_name_prefix="${2:?please enter Server ID. ex - jf_lab_server}"
+repo_name_suffix="${3:?please enter Server ID. ex - jf_lab_server}"
+desc="${4:?please enter Server ID. ex - jf_lab_server}"
 
 jf c use "${SERVER_ID}"
 

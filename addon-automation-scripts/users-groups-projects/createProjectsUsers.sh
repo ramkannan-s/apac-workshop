@@ -20,9 +20,9 @@ SOURCE_JPD_URL="${1:?please enter JPD URL. ex - https://ramkannan.jfrog.io}"
 JPD_AUTH_TOKEN="${2:?please provide identity token}"
 projectCount="${3:?please enter the project count}"
 item=1
-projectnameprefix="apac-workshop"
-projectidprefix="aw"
-userprefix="apac"
+projectnameprefix="${4:?please enter the project count}"
+projectidprefix="${5:?please enter the project count}"
+userprefix="${6:?please enter the project count}"
 
 rm -rf project-*.json
 rm -rf users-*.json

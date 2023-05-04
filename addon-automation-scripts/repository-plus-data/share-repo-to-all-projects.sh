@@ -1,8 +1,8 @@
 #! /bin/bash
 
 ### Get Arguments
-repo_name_prefix="cpe"
-repo_name_suffix="apac"
+repo_name_prefix="${3:?please provide the user pwd or token or API Key . ex - password}"
+repo_name_suffix="${4:?please provide the user pwd or token or API Key . ex - password}"
 JPD_URL="${1:?please enter JPD URL. ex - https://ramkannan.jfrog.io}"
 JPD_AUTH_TOKEN="${2:?please provide the user pwd or token or API Key . ex - password}"
 

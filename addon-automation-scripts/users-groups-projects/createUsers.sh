@@ -25,12 +25,12 @@ echo "No of Users that will be created = $userCount";
 echo "\"username\",\"password\",\"email\"" >> $csvname;
 for i in `seq 1 $userCount`;
 do
-	tempPass=$(openssl rand -base64 8);
+	tempPass=$(pwgen -cny1 -r \"\'\, 10);
 	echo "\"apac-trail-user-"$i"\",\"$tempPass\",\"apacuser@testjfrog.com\"" >> $csvname;
 done;
 echo "" >> $csvname
 
-### Run the curl API 
+#### Run the curl API 
 echo "updating readers groups.. "
 jf rt curl -XGET "api/security/groups/readers" --server-id $SERVER_ID -s > users-readergroup.json
 autoJoinValue=$(cat users-readergroup.json | jq .autoJoin)
@@ -46,4 +46,4 @@ fi
 echo "creating users"
 jf rt users-create --csv $csvname --server-id $SERVER_ID --replace
 
-### sample cmd to run - ./createUsers.sh ramkannan 30
+#### sample cmd to run - ./createUsers.sh ramkannan 30

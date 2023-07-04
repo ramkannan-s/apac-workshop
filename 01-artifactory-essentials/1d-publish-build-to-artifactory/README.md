@@ -1,10 +1,10 @@
-- [Stage 3 - Leverage CLI to publish build to Artifactory](#stage-3---leverage-cli-to-publish-build-to-artifactory)
+- [Leverage JFrog CLI to publish build to Artifactory](#leverage-jfrog-cli-to-publish-build-to-artifactory)
   - [Step 1 - Run the build.sh script](#step-1---run-the-buildsh-script)
   - [Step 2 - View the Build information in Artifactory](#step-2---view-the-build-information-in-artifactory)
   - [Step 3 - Adding properties/metadata to the published build](#step-3---adding-propertiesmetadata-to-the-published-build)
   - [Step 4 -  Promote the Build](#step-4----promote-the-build)
 
-# Stage 3 - Leverage CLI to publish build to Artifactory
+# Leverage JFrog CLI to publish build to Artifactory
 
 ## Step 1 - Run the build.sh script
   

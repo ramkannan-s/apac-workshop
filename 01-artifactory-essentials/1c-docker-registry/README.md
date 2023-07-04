@@ -1,12 +1,9 @@
-- [Artifactory Overview - UI navigation and access](#artifactory-overview---ui-navigation-and-access)
-- [Stage 2 - Working with Artifactory as your docker registry](#stage-2---working-with-artifactory-as-your-docker-registry)
+- [Working with Artifactory as your docker registry](#working-with-artifactory-as-your-docker-registry)
   - [Step 1 - Update the dockerfile](#step-1---update-the-dockerfile)
   - [Step 2 - Push custom image to your docker repository](#step-2---push-custom-image-to-your-docker-repository)
 
 
-# Artifactory Overview - UI navigation and access
-
-# Stage 2 - Working with Artifactory as your docker registry
+# Working with Artifactory as your docker registry
 
 ## Step 1 - Update the dockerfile  
 

@@ -1,12 +1,12 @@
 
 - [JFrog Artifactories - Creating repositories](#jfrog-artifactories---creating-repositories)
-  - [Step1 - Local Repository - Docker](#step1---local-repository---docker)
-  - [Step2 - Remote Repository - Docker](#step2---remote-repository---docker)
-  - [Step3 - Virtual  Repository - Docker](#step3---virtual--repository---docker)
+  - [Step 1 - Local Repository - Docker](#step-1---local-repository---docker)
+  - [Step 2 - Remote Repository - Docker](#step-2---remote-repository---docker)
+  - [Step 3 - Virtual  Repository - Docker](#step-3---virtual--repository---docker)
 
 # JFrog Artifactories - Creating repositories
 
-## Step1 - Local Repository - Docker
+## Step 1 - Local Repository - Docker
 
 - Login to your saas instance `<instance_name>.jfrog.io` with  your admin credentials.
 
@@ -27,7 +27,7 @@
   <img src="/01-artifactory-essentials/images/docker-prod-local.png" alt="mame the repo" style="height: 100px; width:100px;"/>
 
 
-## Step2 - Remote Repository - Docker
+## Step 2 - Remote Repository - Docker
 
 -  Add a remote repository to cache docker images from docker hub or any other external registries.
 
@@ -38,7 +38,7 @@
    <img src="/01-artifactory-essentials/images/docker-remote.png" alt="mame the repo" style="height: 100px; width:100px;"/>
    <img src="/01-artifactory-essentials/images/block-pull.png" alt="unblock" style="height: 100px; width:100px;"/>
 
-## Step3 - Virtual  Repository - Docker
+## Step 3 - Virtual  Repository - Docker
 
 -  Add a Virtual repository to work with a single URL from your docker client. Click on the Virtual tab on the Repositories page.
 

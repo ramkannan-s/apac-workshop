@@ -8,7 +8,7 @@
 
 ## Prerequisites
 
-- A SaaS Instance of JFrog. This will be the trail version enrolled (signed up) by participants for the Workshop.
+- A SaaS Instance from JFrog. Participants will receive an email with the SaaS URL and its respective credentials.
 
 - Docker Installed in your machine.
 
@@ -16,19 +16,16 @@
 
 ### Step1 - Login & Application Overview
 
-- Login to your saas instance `<instance_name>.jfrog.io` with your admin credentials
+- Login to your saas instance `<instance_name>.jfrog.io` with the provided credentials. 
 
 - Click on 'Artifactory' and get familiar with the Packages, Builds and Artifacts views.
-
-  <img src="/01-artifactory-essentials/images/application.png" alt="Application tab" style="height: 100px; width:100px;"/>
+- 
 
 ### Step2 - Administration Overview
 
 - Navigate to the Administration module and get familiar with the different options.
 
-  <img src="/01-artifactory-essentials/images/admin.png" alt="Admin tab" style="height: 100px; width:100px;"/>
 
 <br/>
 <hr>
 <br/>
-

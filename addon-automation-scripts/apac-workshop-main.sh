@@ -38,7 +38,7 @@ cd users-groups-projects
 echo -e "\nExecuting createUsers.sh\n"
 
 chmod +x *
-./createUsers.sh $SERVER_ID $userProjectCount
+./createUsers.sh $SERVER_ID $userProjectCount $userprefix
 echo -e "\nExecuted createUsers.sh\n"
 
 echo -e "\nExecuting createProjectsUsers\n"

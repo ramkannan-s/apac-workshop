@@ -18,6 +18,7 @@ set -u
 ### Get Arguments
 SERVER_ID="${1:?please enter Server ID. ex - ramkannan}"
 userCount="${2:?enter number of users to be created. ex - ramkannan}"
+userprefix="${3:?please enter the project count}"
 csvname="create-users-list.csv"
 
 rm -rf "$csvname"
@@ -25,8 +26,8 @@ echo "No of Users that will be created = $userCount";
 echo "\"username\",\"password\",\"email\"" >> $csvname;
 for i in `seq 1 $userCount`;
 do
-	tempPass=$(pwgen -cny1 -r \"\'\, 10);
-	echo "\"apac-trail-user-"$i"\",\"$tempPass\",\"apacuser@testjfrog.com\"" >> $csvname;
+	tempPass=$(pwgen -cny1 -r \"\'\|\,\)\`\~ 10);
+	echo "\"$userprefix-trail-user-"$i"\",\"$tempPass\",\"$userprefix-user@jfrog.com\"" >> $csvname;
 done;
 echo "" >> $csvname
 
